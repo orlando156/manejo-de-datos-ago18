@@ -7,8 +7,8 @@ gender boolean
 
 
 create table transactions(
-id_cliente int not null PRIMARY KEY,
-id_transaccion int NOT null,
+id_cliente int not null ,
+id_transaccion int NOT null PRIMARY KEY,
  purchase_date date,
 FOREIGN KEY (`id_cliente`) REFERENCES `clients`(`id`)
 );
@@ -22,7 +22,7 @@ price float
 create table products_transactions(
 id_products int not null,
 id_transaccion int NOT null PRIMARY KEY,
-FOREIGN KEY (id_transaccion) references transactions (id_cliente),
+FOREIGN KEY (id_transaccion) references transactions (id_transaccion),
 FOREIGN KEY (id_products) references products (id_products)    
 );
 
