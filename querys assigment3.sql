@@ -28,15 +28,14 @@ select  first_name, last_name, salary, DEPARTMENT_ID
 SELECT FIRST_NAME, LAST_NAME,HIRE_DATE
   from Employees
    WHERE HIRE_DATE 
-   LIKE  '1987%';
+   LIKE  '1987_%';
 
-#5 Write a query to display the first_name of all employees who have both "b" and "c" in their first name.
- Falta corregir el query 
+#5 Write a query to display the first_name of all employees who have both "b" and "c" in their first name. 
 
 SELECT FIRST_NAME
   from Employees
    WHERE FIRST_NAME 
-   LIKE  '%b%' OR '%c%' ;
+   LIKE  '%b%' and '%c%' ;
 
 #6 Write a query to display the last name, job, and salary for all employees whose job is that of a Programmer (IT_PROG) or a Shipping Clerk (SH_CLERK), and whose salary is not equal to $4,500, $10,000 or $15,000.
 
@@ -51,3 +50,32 @@ AND salary NOT IN (4500 OR 10000 or 15000)
 SELECT last_name
   FROM Employees 
    WHERE CHARACTER_LENGTH (first_name) = 6;
+   
+#8 Write a query to display the last name of employees having 'e' as the third character.
+SELECT last_name  
+ from Employees  
+   WHERE last_name LIKE '__e%';
+#9 Write a query to display the available JOBS (i.e. the ones that no employee has taken).
+select 
+ JobHistory.EMPLOYEE_ID,
+ JobHistory.JOB_ID,
+ JobHistory.DEPARTMENT_ID,
+ Employees.FIRST_NAME,
+ Employees.LAST_NAME,
+ Employees.EMPLOYEE_ID,
+ Employees.JOB_ID,
+ Employees.DEPARTMENT_ID
+from JobHistory 
+INNER JOIN Employees ON
+ JobHistory.JOB_ID <> Employees.JOB_ID
+ 
+ #10 Write a query to display the name (FIRST_NAME, LAST_NAME), SALARY and PF (15% of salary) of all employees.
+SELECT FIRST_NAME,
+ LAST_NAME,
+ SALARY, salary * 0.15 as pf
+from Employees;
+
+#11 Write a query to select all record from employees where last name in 'BLAKE', 'SCOTT', 'KING' and 'FORD'.
+SELECT *
+FROM `Employees` 
+ WHERE LAST_NAME in ( 'BLAKE' or 'SCOTT' or 'KING' or 'FORD')
