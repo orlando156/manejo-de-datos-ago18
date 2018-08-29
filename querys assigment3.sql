@@ -79,4 +79,5 @@ from Employees;
 #11 Write a query to select all record from employees where last name in 'BLAKE', 'SCOTT', 'KING' and 'FORD'.
 SELECT *
 FROM `Employees` 
- WHERE LAST_NAME in ( 'BLAKE' or 'SCOTT' or 'KING' or 'FORD')
+ WHERE LAST_NAME = 'BLAKE' 
+  or LAST_NAME = 'SCOTT' or LAST_NAME = 'KING' or LAST_NAME ='FORD'
