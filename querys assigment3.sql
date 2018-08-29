@@ -34,8 +34,7 @@ SELECT FIRST_NAME, LAST_NAME,HIRE_DATE
 SELECT FIRST_NAME
   from Employees
    WHERE FIRST_NAME 
-   LIKE  '%b%' and '%c%' ;
-
+   LIKE  '%b__c%';
 #6 Write a query to display the last name, job, and salary for all employees whose job is that of a Programmer (IT_PROG) or a Shipping Clerk (SH_CLERK), and whose salary is not equal to $4,500, $10,000 or $15,000.
 
 SELECT last_name,
