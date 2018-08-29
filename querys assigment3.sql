@@ -10,7 +10,7 @@ SELECT Employees.FIRST_NAME,
 Employees.LAST_NAME, 
 Employees.DEPARTMENT_ID
   FROM Employees 
-  where DEPARTMENT_ID = '30' or '100'
+  where DEPARTMENT_ID = '30' or DEPARTMENT_ID = '100'
   ORDER BY DEPARTMENT_ID ASC
 
 
