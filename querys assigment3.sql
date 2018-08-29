@@ -8,11 +8,10 @@ WHERE SALARY not BETWEEN 10000 AND 15000;
 
 SELECT Employees.FIRST_NAME, 
 Employees.LAST_NAME, 
-Departments.DEPARTMENT_ID
+Employees.DEPARTMENT_ID
   FROM Employees 
-  INNER JOIN  Departments ON 
-     Departments.DEPARTMENT_ID = Employees.DEPARTMENT_ID
-ORDER BY DEPARTMENT_ID ASC;
+  where DEPARTMENT_ID = '30' or '100'
+  ORDER BY DEPARTMENT_ID ASC
 
 
 #3 Write a query to display the name (FIRST_NAME, LAST_NAME) and SALARY for all employees whose salary is not in the range $10,000 through $15,000 and are in department 30 or 100.
@@ -63,11 +62,13 @@ select
  Employees.FIRST_NAME,
  Employees.LAST_NAME,
  Employees.EMPLOYEE_ID,
- Employees.JOB_ID,
+ jobs.JOB_ID,
  Employees.DEPARTMENT_ID
 from JobHistory 
-INNER JOIN Employees ON
- JobHistory.JOB_ID <> Employees.JOB_ID
+INNER JOIN jobs ON
+ JobHistory.JOB_ID = Jobs.JOB_ID
+ INNER Join Employees
+  Employees.JOB_ID = Jobs.JOB.ID
  
  #10 Write a query to display the name (FIRST_NAME, LAST_NAME), SALARY and PF (15% of salary) of all employees.
 SELECT FIRST_NAME,
