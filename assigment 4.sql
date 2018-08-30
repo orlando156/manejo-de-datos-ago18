@@ -53,7 +53,7 @@ SELECT Employees.EMPLOYEE_ID,
    Jobs.JOB_TITLE,
    JobHistory.END_DATE,
    JobHistory.START_DATE,
-DATEDIFF( JobHistory.END_DATE,JobHistory.START_DATE ) as days /*esta funciÛn sirve para sacar los dÌas la funciÛn DATEDIFF en MySQL, tienes que aÒadirle las dos fechas y te saca la cantidad de dÌas entre las dos*/
+DATEDIFF( JobHistory.END_DATE,JobHistory.START_DATE ) as days /*esta funci√≥n sirve para sacar los d√≠as la funci√≥n DATEDIFF en MySQL, tienes que a√±adirle las dos fechas y te saca la cantidad de d√≠as entre las dos*/
 FROM JobHistory 
 INNER JOIN Jobs 
 ON JobHistory.JOB_ID = Jobs.JOB_ID
@@ -82,6 +82,7 @@ ON Departments.DEPARTMENT_ID = Employees.DEPARTMENT_ID
    ON Departments.Location_id = Locations.LOCATION_ID
 -- WHERE Employees.DEPARTMENT_ID = '90';
 5) Write a query to display the job title and average salary of employees.
+  select
   Jobs.JOB_TITLE,
 AVG(SALARY) AS average_salary
 FROM  Jobs 
@@ -100,13 +101,13 @@ INNER JOIN Employees
 ON Jobs.JOB_ID = Employees.JOB_ID
 GROUP BY Employees.FIRST_NAME
 
-7) Escriba una consulta para mostrar el historial de trabajo que realizÛ cualquier empleado que actualmente est· obteniendo m·s de 10000 de salario.
+7) Escriba una consulta para mostrar el historial de trabajo que realiz√≥ cualquier empleado que actualmente est√° obteniendo m√°s de 10000 de salario.
 
 7) Write a query to display the job history that was done by any employee who is currently drawing more than 10000 of salary.
 SELECT
  -- Employees.EMPLOYEE_ID,
   DATE_FORMAT(JobHistory.END_DATE,
-  '%Y, %m,%d') - DATE_FORMAT( JobHistory.START_DATE,  '%Y %m %D' ) AS YEAR,
+  '%Y, %m,%d') - DATE_FORMAT( JobHistory.START_DATE,  '%Y %m %D' ) AS YEARS,
   DATEDIFF( JobHistory.END_DATE,  JobHistory.START_DATE ) AS Days,
   Employees.SALARY,
   Employees.FIRST_NAME,
