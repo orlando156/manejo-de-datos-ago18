@@ -54,21 +54,19 @@ SELECT last_name
  from Employees  
    WHERE last_name LIKE '__e%';
 #9 Write a query to display the available JOBS (i.e. the ones that no employee has taken).
-select 
- JobHistory.EMPLOYEE_ID,
- JobHistory.JOB_ID,
- JobHistory.DEPARTMENT_ID,
+SELECT
  Employees.FIRST_NAME,
  Employees.LAST_NAME,
  Employees.EMPLOYEE_ID,
- jobs.JOB_ID,
+ Employees.JOB_ID,
+  Jobs.JOB_ID,
+  Jobs.JOB_TITLE,
  Employees.DEPARTMENT_ID
-from JobHistory 
-INNER JOIN jobs ON
- JobHistory.JOB_ID = Jobs.JOB_ID
- INNER Join Employees
-  Employees.JOB_ID = Jobs.JOB.ID
- 
+FROM Jobs
+  LEFT Join Employees
+  on  (Jobs.JOB_ID = Employees.JOB_ID)  
+  WHERE Employees.EMPLOYEE_ID IS null
+ORDER BY `Jobs`.`JOB_ID` ASC 
  #10 Write a query to display the name (FIRST_NAME, LAST_NAME), SALARY and PF (15% of salary) of all employees.
 SELECT FIRST_NAME,
  LAST_NAME,
