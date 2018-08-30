@@ -1,4 +1,4 @@
-*Funciones*
+--*Funciones*--
 ```1) Write a query to fetch even numbered records from employees table. 
 
 2) Write a query to find the 5th maximum salary in the employees table.
@@ -19,25 +19,32 @@ LIMIT 10
 6) Write a query to get the 3 minimum salaries.``` 
 
 
-subquerys
+-- subquerys-- 
 1) Write a query to find the name (FIRST_NAME, LAST_NAME) and salary of the employees who earn a salary that is higher than the salary of all the Shipping Clerks (JOB_ID = 'SH_CLERK'). Sort the results of the salary of the lowest to highest.
-SELECT FIRST_NAME,
-       LAST_NAME,
-       salary
-     FROM   Employees
-        WHERE salary > IN (
-        SELECT salary  
-FROM Employees 
-WHERE JOB_ID = 'SH_CLERK'
-)
-
+SELECT
+  FIRST_NAME,
+  LAST_NAME,
+  salary
+FROM
+  Employees
+WHERE
+  salary > (  SELECT MAX(salary)  FROM Employees  WHERE JOB_ID = 'SH_CLERK')
+  ORDER BY SALARY DESC
 2) Write a query to find the name (FIRST_NAME, LAST_NAME) of the employees who are not managers.
 
 3) Write a query to display the employee ID, first name, last name, and department names of all employees.
+SELECT Employees.EMPLOYEE_ID,
+  Employees.FIRST_NAME,
+  Employees.LAST_NAME,
+  Departments.DEPARTMENT_NAME
+FROM `Employees` 
+ JOIN Departments
+ ON Employees.DEPARTMENT_ID = Departments.DEPARTMENT_ID
+
 4) Write a query to display the employee ID, first name, last name, salary of all employees whose salary is above average for their departments.
 
 
-join queries*
+-- join queries*--
 1) Write a query to get the department name and number of employees in the department.
 SELECT DEPARTMENT_NAME,
 Employees.DEPARTMENT_ID
@@ -120,14 +127,16 @@ WHERE
   SALARY > 10000
 
 8) Write a query to display department name, full name (first_name, last_name), hire date, salary of the manager for all managers whose experience is more than 15 years.```
-SELECT 
- CURRENT_DATE () - (Employees.HIRE_DATE) as prueba,
-   FIRST_NAME,
-   Employees.LAST_NAME,
+SELECT Employees.FIRST_NAME,
+Employees.LAST_NAME,
    Employees.HIRE_DATE,
+   YEAR(CURDATE())-YEAR(Employees.HIRE_DATE) + IF(DATE_FORMAT(CURDATE(),'%m-%d') > DATE_FORMAT(Employees.HIRE_DATE,'%m-%d'),0,1 ) AS antiguedad,
    Employees.SALARY,
-   JobHistory.END_DATE,
+   DATE_FORMAT(JobHistory.END_DATE,
+  '%Y, %m,%d') - DATE_FORMAT( JobHistory.START_DATE,  '%Y %m %D' ) AS YEAR,
+  DATEDIFF( JobHistory.END_DATE,  JobHistory.START_DATE ) AS Days,
+    JobHistory.END_DATE,
    JobHistory.START_DATE
-   FROM Employees
-	INNER JOIN JobHistory
-	ON Employees.JOB_ID = 	JobHistory.JOB_ID
+FROM Employees
+INNER JOIN JobHistory
+	ON Employees.DEPARTMENT_ID = 	JobHistory.DEPARTMENT_ID
