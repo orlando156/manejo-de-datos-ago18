@@ -63,10 +63,9 @@ SELECT
   Jobs.JOB_TITLE,
  Employees.DEPARTMENT_ID
 FROM Jobs
-  LEFT Join Employees
-  on  (Jobs.JOB_ID = Employees.JOB_ID)  
-  WHERE Employees.EMPLOYEE_ID IS null
-ORDER BY `Jobs`.`JOB_ID` ASC 
+  RIGHT Join Employees
+  on  (Jobs.JOB_ID = Employees.JOB_ID) 
+ ORDER BY `Jobs`.`JOB_ID` ASC
  #10 Write a query to display the name (FIRST_NAME, LAST_NAME), SALARY and PF (15% of salary) of all employees.
 SELECT FIRST_NAME,
  LAST_NAME,
