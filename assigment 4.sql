@@ -1,11 +1,11 @@
 --*Funciones*--
 ```1) Write a query to fetch even numbered records from employees table. 
-
+SELECT * 
+ FROM Employees 
+	WHERE MOD(EMPLOYEE_ID,2) = 0  
+   ORDER BY `Employees`.`EMPLOYEE_ID` ASC
 2) Write a query to find the 5th maximum salary in the employees table.
-SELECT SALARY, 
-   COUNT(SALARY) 
-from Employees
-GROUP BY SALARY 
+
 3) Write a query to find the 4th minimum salary in the employees table. 
 
 4) Write a query to select last 10 records from the employees table. 
@@ -16,8 +16,26 @@ ORDER BY
   Employees.EMPLOYEE_ID DESC
 LIMIT 10 
 5) Write a query to get the 3 maximum salaries. 
-6) Write a query to get the 3 minimum salaries.``` 
+SELECT
+   EMPLOYEE_ID,
+   FIRST_NAME,
+   LAST_NAME,
+   salary
+  FROM Employees
+ GROUP BY EMPLOYEE_ID
+ORDER BY SALARY DESC
+LIMIT 3
 
+6) Write a query to get the 3 minimum salaries.``` 
+ SELECT
+   EMPLOYEE_ID,
+   FIRST_NAME,
+   LAST_NAME,
+   salary
+FROM Employees
+	GROUP BY EMPLOYEE_ID
+ORDER BY SALARY ASC
+LIMIT 3
 
 -- subquerys-- 
 1) Write a query to find the name (FIRST_NAME, LAST_NAME) and salary of the employees who earn a salary that is higher than the salary of all the Shipping Clerks (JOB_ID = 'SH_CLERK'). Sort the results of the salary of the lowest to highest.
@@ -31,6 +49,13 @@ WHERE
   salary > (  SELECT MAX(salary)  FROM Employees  WHERE JOB_ID = 'SH_CLERK')
   ORDER BY SALARY DESC
 2) Write a query to find the name (FIRST_NAME, LAST_NAME) of the employees who are not managers.
+ select FIRST_Name, LAST_NAME, 
+Employees.JOB_ID-- ,
+-- Jobs.JOB_TITLE
+FROM Employees
+/*JOIN Jobs 
+on Employees.JOB_ID = Jobs.JOB_ID*/
+WHERE EMPLOYEE_ID NOT IN (SELECT Employees.MANAGER_ID FROM Employees) 
 
 3) Write a query to display the employee ID, first name, last name, and department names of all employees.
 SELECT Employees.EMPLOYEE_ID,
@@ -42,7 +67,14 @@ FROM `Employees`
  ON Employees.DEPARTMENT_ID = Departments.DEPARTMENT_ID
 
 4) Write a query to display the employee ID, first name, last name, salary of all employees whose salary is above average for their departments.
-
+SELECT
+   EMPLOYEE_ID,
+   FIRST_NAME,
+   LAST_NAME, 
+   salary
+	FROM Employees
+	WHERE salary > (SELECT  AVG(salary) FROM Employees)  
+ORDER BY `Employees`.`EMPLOYEE_ID` ASC
 
 -- join queries*--
 1) Write a query to get the department name and number of employees in the department.
