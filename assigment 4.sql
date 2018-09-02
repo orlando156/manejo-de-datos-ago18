@@ -13,14 +13,13 @@ FIRST_NAME,
   WHERE 5 = ( SELECT COUNT(DISTINCT SALARY) FROM Employees AS em2 
             WHERE em2.SALARY >= Employees.SALARY ); 
 3) Write a query to find the 4th minimum salary in the employees table. 
- SELECT DISTINCT
+ select 
+distinct (salary), 
 FIRST_NAME,
-  LAST_NAME,
-  SALARY
-  from Employees
-  WHERE 3 = ( SELECT COUNT(DISTINCT SALARY) FROM Employees AS em2 
-            WHERE em2.SALARY <= Employees.SALARY );
-
+LAST_NAME
+from Employees 
+order by salary ASC 
+limit 4,1
 4) Write a query to select last 10 records from the employees table. 
 SELECT   *
 FROM
