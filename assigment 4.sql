@@ -5,8 +5,21 @@ SELECT *
 	WHERE MOD(EMPLOYEE_ID,2) = 0  
    ORDER BY `Employees`.`EMPLOYEE_ID` ASC
 2) Write a query to find the 5th maximum salary in the employees table.
-
+ SELECT DISTINCT
+FIRST_NAME,
+  LAST_NAME,
+  SALARY
+  from Employees
+  WHERE 5 = ( SELECT COUNT(DISTINCT SALARY) FROM Employees AS em2 
+            WHERE em2.SALARY >= Employees.SALARY ); 
 3) Write a query to find the 4th minimum salary in the employees table. 
+ SELECT DISTINCT
+FIRST_NAME,
+  LAST_NAME,
+  SALARY
+  from Employees
+  WHERE 3 = ( SELECT COUNT(DISTINCT SALARY) FROM Employees AS em2 
+            WHERE em2.SALARY <= Employees.SALARY );
 
 4) Write a query to select last 10 records from the employees table. 
 SELECT   *
