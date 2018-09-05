@@ -6,8 +6,6 @@ SELECT *
    ORDER BY `Employees`.`EMPLOYEE_ID` ASC
 2) Write a query to find the 5th maximum salary in the employees table.
  SELECT DISTINCT
-FIRST_NAME,
-  LAST_NAME,
   SALARY
   from Employees
   WHERE 5 = ( SELECT COUNT(DISTINCT SALARY) FROM Employees AS em2 
@@ -29,10 +27,7 @@ ORDER BY
 LIMIT 10 
 5) Write a query to get the 3 maximum salaries. 
 SELECT
-   EMPLOYEE_ID,
-   FIRST_NAME,
-   LAST_NAME,
-   salary
+    salary
   FROM Employees
  GROUP BY EMPLOYEE_ID
 ORDER BY SALARY DESC
@@ -40,10 +35,7 @@ LIMIT 3
 
 6) Write a query to get the 3 minimum salaries.``` 
  SELECT
-   EMPLOYEE_ID,
-   FIRST_NAME,
-   LAST_NAME,
-   salary
+      salary
 FROM Employees
 	GROUP BY EMPLOYEE_ID
 ORDER BY SALARY ASC
@@ -91,10 +83,11 @@ ORDER BY `Employees`.`EMPLOYEE_ID` ASC
 -- join queries*--
 1) Write a query to get the department name and number of employees in the department.
 SELECT DEPARTMENT_NAME,
-Employees.DEPARTMENT_ID
+COUNT(EMPLOYEE_ID) as num_employees
 FROM Departments 
 INNER JOIN Employees 
-ON Departments.DEPARTMENT_ID = Employees.DEPARTMENT_ID;
+ON Departments.DEPARTMENT_ID = Employees.DEPARTMENT_ID
+GROUP BY Employees.DEPARTMENT_ID
 
 2) Write a query to find the employee ID, job title, number of days between ending date and 
 starting date for all jobs in department 90 from job history.
