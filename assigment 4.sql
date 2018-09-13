@@ -1,5 +1,5 @@
 --*Funciones*--
-```1) Write a query to fetch even numbered records from employees table. 
+1) Write a query to fetch even numbered records from employees table. 
 SELECT * 
  FROM Employees 
 	WHERE MOD(EMPLOYEE_ID,2) = 0  
@@ -12,12 +12,10 @@ SELECT *
             WHERE em2.SALARY >= Employees.SALARY ); 
 3) Write a query to find the 4th minimum salary in the employees table. 
  select 
-distinct (salary), 
-FIRST_NAME,
-LAST_NAME
-from Employees 
+   distinct (salary)
+  from Employees 
 order by salary ASC 
-limit 4,1
+  limit 4,1
 4) Write a query to select last 10 records from the employees table. 
 SELECT   *
 FROM
@@ -53,12 +51,10 @@ WHERE
   salary > (  SELECT MAX(salary)  FROM Employees  WHERE JOB_ID = 'SH_CLERK')
   ORDER BY SALARY DESC
 2) Write a query to find the name (FIRST_NAME, LAST_NAME) of the employees who are not managers.
- select FIRST_Name, LAST_NAME, 
-Employees.JOB_ID-- ,
--- Jobs.JOB_TITLE
+ select FIRST_Name, 
+ LAST_NAME, 
+Employees.JOB_ID
 FROM Employees
-/*JOIN Jobs 
-on Employees.JOB_ID = Jobs.JOB_ID*/
 WHERE EMPLOYEE_ID NOT IN (SELECT Employees.MANAGER_ID FROM Employees) 
 
 3) Write a query to display the employee ID, first name, last name, and department names of all employees.
@@ -124,7 +120,7 @@ INNER JOIN Employees
 ON Departments.DEPARTMENT_ID = Employees.DEPARTMENT_ID
    INNER JOIN Locations
    ON Departments.Location_id = Locations.LOCATION_ID
--- WHERE Employees.DEPARTMENT_ID = '90';
+
 5) Write a query to display the job title and average salary of employees.
   select
   Jobs.JOB_TITLE,
@@ -137,10 +133,8 @@ GROUP by EMPLOYEE_ID
 SELECT JOB_title,
  Employees.FIRST_NAME,
  Employees.LAST_NAME,
- COUNT (SALARY) as Salario_total ,
- salary,
- MIN(salary) as Salary_min
-FROM Jobs 
+ employees.salary
+ FROM Jobs 
 INNER JOIN Employees
 ON Jobs.JOB_ID = Employees.JOB_ID
 GROUP BY Employees.FIRST_NAME
@@ -149,7 +143,7 @@ GROUP BY Employees.FIRST_NAME
 
 7) Write a query to display the job history that was done by any employee who is currently drawing more than 10000 of salary.
 SELECT
- -- Employees.EMPLOYEE_ID,
+ 
   DATE_FORMAT(JobHistory.END_DATE,
   '%Y, %m,%d') - DATE_FORMAT( JobHistory.START_DATE,  '%Y %m %D' ) AS YEARS,
   DATEDIFF( JobHistory.END_DATE,  JobHistory.START_DATE ) AS Days,
